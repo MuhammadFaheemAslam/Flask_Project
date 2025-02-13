@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,15 +15,48 @@
             <label for="name">Enter your name:</label>
             <input type="text" id="name" name="name" required>
             <button type="submit">Submit</button>
+            
         </form>
         <div>
             {% if greeting %}
             <h3>{{ greeting }}</h3>
+            <a href="{{ url_for('feedback') }}">Leave Feedback</a>
             {% endif %}
         </div>
+        
     </div>
-
 
 </body>
 
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Page</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="'container">
+    <h1>Enter your name:</h1>
+    <form method="POST" action="/">
+        <input type="text" name="name" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <br>
+    <a href="/feedback">Leave Feedback</a>
+</div>
+</body>
 </html>
